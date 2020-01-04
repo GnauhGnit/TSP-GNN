@@ -67,7 +67,7 @@ class InstanceLoader(object):
             #end
 
             # Compute the cost of the optimal route
-            cost = sum([ Mw[min(x,y),max(x,y)] for (x,y) in zip(route,route[1:]+route[1:]) ]) / n
+            cost = sum([ Mw[min(x,y),max(x,y)] for (x,y) in zip(route,route[1:]+[route[0]]) ]) / n
 
             if target_cost is None:
                 C[m_acc:m_acc+m,0] = (1-dev)*cost if i%2 == 0 else (1+dev)*cost
