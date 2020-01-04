@@ -37,7 +37,7 @@ def get_cost(sess, model, instance, time_steps, threshold = 0.5, stopping_delta 
     wpred = (wmin+wmax)/2
     
     # Create batch of size 1 with the given instance
-    route_cost = sum([ Mw[min(i,j),max(i,j)] for (i,j) in zip(route,route[1:]+route[:1]) ]) / n
+    route_cost = sum([ Mw[min(i,j),max(i,j)] for (i,j) in zip(route,route[1:]+[route[0]]) ]) / n
     batch = InstanceLoader.create_batch([(Ma,Mw,route)], target_cost=wpred)
     EV, W, _, route_exists, n_vertices, n_edges = batch
     C = np.ones((m,1))
